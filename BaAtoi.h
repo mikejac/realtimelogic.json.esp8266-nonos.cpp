@@ -6,13 +6,14 @@
  * /_/ |_|\___/\__,_/_/ /_/ /_/_/ /_/ /_/\___/_____/\____/\__, /_/\___/  
  *                                                       /____/          
  *
- *                  Barracuda Embedded Web-Server 
+ *                  Barracuda Embedded Web-Server
+ *
  ****************************************************************************
- *            PROGRAM MODULE
+ *			      HEADER
  *
- *   $Id: BaServerLib.c 3455 2014-08-18 21:22:21Z wini $
+ *   $Id$
  *
- *   COPYRIGHT:  Real Time Logic, 2002 - 2014
+ *   COPYRIGHT:  Real Time Logic LLC, 2014
  *
  *   This software is copyrighted by and is the sole property of Real
  *   Time Logic LLC.  All rights, title, ownership, or other interests in
@@ -32,4 +33,52 @@
  *               http://www.realtimelogic.com
  ****************************************************************************
  *
+ *
  */
+
+
+#ifndef __BaAtoi_h
+#define __BaAtoi_h
+
+#include "TargConfig.h"
+
+#ifndef BA_API
+#define BA_API
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+/** Converts characters of s to type U64. The number is negated if
+    preceded by '-'. Returns 0 if unable to convert or s is NULL.
+*/
+BA_API U64 U64_atoll(const char* s);
+BA_API U64 U64_atoll2(const char* s, const char* e);
+
+#define S64_atoll(s) ((S64)U64_atoll(s))
+
+
+   /** Negates a 32 bit number.
+    */
+BA_API U32 U32_negate(U32 n);
+
+   /** Converts characters of s to type U32. The number is negated if
+      preceded by '-'. Returns 0 if unable to convert or s is NULL.
+    */
+BA_API U32 U32_atoi(const char* s);
+
+   /** Works like U32_atoi, but converts from start of string 's' to end 'e'.
+    */
+BA_API U32 U32_atoi2(const char* s, const char* e);
+
+   /** Converts hex characters of s to type U32. 
+       Returns 0 if unable to convert or s is NULL.
+    */
+BA_API U32 U32_hextoi(const char *s);
+#ifdef __cplusplus
+}
+#endif
+
+
+#endif
